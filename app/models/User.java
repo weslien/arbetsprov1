@@ -2,6 +2,7 @@ package models;
 
 import play.data.validation.Constraints;
 import play.db.jpa.JPA;
+import scala.Equals;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -25,10 +26,13 @@ public class User {
 
     @Constraints.Required
     @Constraints.Email
+    @Column(unique = true)
     public String email;
 
     @Constraints.Required
+
     public String password;
+
 
     public static User findById(Long id){
         return JPA.em().find(User.class, id);

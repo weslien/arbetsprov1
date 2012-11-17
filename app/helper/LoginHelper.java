@@ -1,6 +1,7 @@
 package helper;
 
 import models.User;
+import play.mvc.Controller;
 import play.mvc.Http;
 
 import javax.persistence.NoResultException;
@@ -35,5 +36,15 @@ public class LoginHelper {
 
     public static void clearLoggedInUser(Http.Session session) {
         session.remove(LOGGED_IN);
+    }
+
+    public static boolean attemptLogin(User user) {
+        if (user.attemptLogin()) {
+            loginUser(Controller.session(), user);
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }

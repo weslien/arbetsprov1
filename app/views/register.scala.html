@@ -12,13 +12,14 @@
 @form(routes.Application.doRegistration){
     <p>
     @inputText(registrationForm("name"), '_label -> "Your name")
-    @inputText(registrationForm("email"), '_label -> "Email")
-    @inputPassword(registrationForm("password"), '_label -> "Password")
+    @inputText(registrationForm("email"), '_label -> "Email", '_error -> registrationForm.globalError)
+    @inputPassword(registrationForm("password"), '_label -> "Password", '_error -> registrationForm.error("password"))
+    @inputPassword(registrationForm("repeatPassword"), '_label -> "Password repeated", '_error -> registrationForm.error("repeatPassword"))
 
 
     <div class="control-group">
         <div class="controls">
-            <button type="submit" class="btn primary">Sign in</button>
+            <button type="submit" class="btn primary">@Messages("button.register")</button>
 
             <a class="btn btn-danger" href="/">
                 @Messages("button.cancel")

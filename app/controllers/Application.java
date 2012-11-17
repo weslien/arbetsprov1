@@ -4,19 +4,18 @@ import helper.LoginHelper;
 import models.User;
 import play.data.Form;
 import play.db.jpa.Transactional;
-import play.mvc.*;
-
+import play.i18n.Messages;
+import play.mvc.Controller;
+import play.mvc.Result;
 import views.html.*;
 import views.html.fragments.stateNotLoggedIn;
-import views.html.index;
-import views.html.login;
 
 public class Application extends Controller {
 
     protected static Result HOME = redirect(
             routes.Application.index()
     );
-
+    private static final String GENERIC_ERROR = Messages.get("error.generic");
 
     public static Result index() {
 
@@ -36,25 +35,17 @@ public class Application extends Controller {
     @Transactional
     public static Result doLogin() {
         Form<User> loginForm = form(User.class).bindFromRequest();
-        if(loginForm.hasErrors()) {
+        if (loginForm.hasErrors()) {
             return badRequest(login.render(loginForm));
         }
-        if(!attemptLogin(loginForm.get())){
+        if (!LoginHelper.attemptLogin(loginForm.get())) {
+            loginForm.reject("password");
+
             return badRequest(login.render(loginForm));
         }
         return redirect(
-            routes.Application.userProfile()
+                routes.Application.userProfile()
         );
-    }
-
-    private static boolean attemptLogin(User user) {
-        if(user.attemptLogin()){
-            LoginHelper.loginUser(session(), user);
-
-            return true;
-        }else{
-            return false;
-        }
     }
 
     @Transactional(readOnly = true)
@@ -68,16 +59,24 @@ public class Application extends Controller {
     @Transactional
     public static Result doRegistration() {
         Form<User> registrationForm = form(User.class).bindFromRequest();
-        if(registrationForm.hasErrors()) {
-            return badRequest(login.render(registrationForm));
+
+        // Check repeated password
+        if(!registrationForm.field("password").valueOr("").isEmpty()) {
+            if(!registrationForm.field("password").valueOr("").equals(registrationForm.field("repeatPassword").value())) {
+                registrationForm.reject("repeatPassword", "Password don't match");
+            }
         }
+
+        if (registrationForm.hasErrors()) {
+            return badRequest(register.render(registrationForm));
+        }
+
         registrationForm.get().save();
         return redirect(
                 routes.Application.registrationComplete()
         );
     }
 
-    @Transactional
     public static Result registrationComplete() {
 
         return ok(
@@ -85,12 +84,12 @@ public class Application extends Controller {
         );
     }
 
-
     @Transactional(readOnly = true)
     public static Result userProfile() {
         final User user = LoginHelper.getLoggedInUser(session());
-        if(user == null){
-            return index();
+        if (user == null) {
+            flash("ERROR", Messages.get("profile.invalidaccount"));
+            return redirect(routes.Application.error());
         }
         return ok(
                 profile.render(user)
@@ -108,6 +107,15 @@ public class Application extends Controller {
         );
     }
 
+    public static Result error() {
+        String errorMessage = flash("ERROR");
+        if(errorMessage == null){
+            errorMessage = GENERIC_ERROR;
+        }
+        return ok(
+                errorpage.render(GENERIC_ERROR)
+        );
+    }
 
 
 }

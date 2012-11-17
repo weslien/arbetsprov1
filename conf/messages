@@ -8,7 +8,13 @@ login.tagline=If you forgot you can always register a new account.
 register.welcome=Welcome, sign up please!
 register.tagline=It's useful and fun!
 
+profile.invalidaccount=The account that was logged in has unrecoverable errors.
+
+errorpage.heading=An error occurred
+error.generic = Something went wrong. Sorry!
+
 button.login=Log in
 button.loggedIn=Take me to my profile
 button.register=Sign me up!
 button.cancel=Take me away!
+button.home=Righty-o!

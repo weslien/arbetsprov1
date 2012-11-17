@@ -1,0 +1,22 @@
+@(errorMessage: String)
+
+@main(errorMessage) {
+
+<div class="hero-unit">
+    <h2>@Messages("errorpage.heading")</h2>
+    <p>
+        <div class="alert alert-error">@errorMessage</div>
+    </p>
+    <p>
+        <a class="btn btn-primary btn-large" href="/">
+            @Messages("button.home")
+        </a>
+    </p>
+
+
+</div>
+
+
+
+
+}
