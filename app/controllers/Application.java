@@ -12,10 +12,10 @@ import views.html.fragments.stateNotLoggedIn;
 
 public class Application extends Controller {
 
+    private static final String GENERIC_ERROR = Messages.get("error.generic");
     protected static Result HOME = redirect(
             routes.Application.index()
     );
-    private static final String GENERIC_ERROR = Messages.get("error.generic");
 
     public static Result index() {
 
@@ -39,7 +39,7 @@ public class Application extends Controller {
             return badRequest(login.render(loginForm));
         }
         if (!LoginHelper.attemptLogin(loginForm.get())) {
-            loginForm.reject("password");
+            loginForm.reject("password", "Incorrect password or non-existing user.");
 
             return badRequest(login.render(loginForm));
         }
@@ -61,9 +61,16 @@ public class Application extends Controller {
         Form<User> registrationForm = form(User.class).bindFromRequest();
 
         // Check repeated password
-        if(!registrationForm.field("password").valueOr("").isEmpty()) {
-            if(!registrationForm.field("password").valueOr("").equals(registrationForm.field("repeatPassword").value())) {
+        if (!registrationForm.field("password").valueOr("").isEmpty()) {
+            if (!registrationForm.field("password").valueOr("").equals(registrationForm.field("repeatPassword").value())) {
                 registrationForm.reject("repeatPassword", "Password don't match");
+            }
+        }
+
+        // Check if the username is valid
+        if (!registrationForm.hasErrors()) {
+            if (User.findByEmail(registrationForm.get().email) != null) {
+                registrationForm.reject("email", "This username is already taken");
             }
         }
 
@@ -109,11 +116,11 @@ public class Application extends Controller {
 
     public static Result error() {
         String errorMessage = flash("ERROR");
-        if(errorMessage == null){
+        if (errorMessage == null) {
             errorMessage = GENERIC_ERROR;
         }
         return ok(
-                errorpage.render(GENERIC_ERROR)
+                errorpage.render(errorMessage)
         );
     }
 

@@ -14,6 +14,7 @@ import java.util.List;
  * Date: 2012-11-16
  */
 @Entity(name = "users")
+@Table(name = "users")
 @SequenceGenerator(name = "user_seq", sequenceName = "user_seq")
 public class User {
 
@@ -39,7 +40,7 @@ public class User {
     }
 
     public static User findByUsernamePassword(String email, String encryptedPassword){
-        return (User)JPA.em().createQuery("from users u where email=? and password=?")
+        return (User)JPA.em().createQuery("from users where email=? and password=?")
                 .setParameter(1, email)
                 .setParameter(2, encryptedPassword)
                 .getSingleResult();
@@ -82,9 +83,10 @@ public class User {
     }
 
     public static User findByEmail(String email) {
-        return (User)JPA.em().createQuery("from users u where email=?")
+        List<User> list = JPA.em().createQuery("from users u where email=?")
                 .setParameter(1, email)
-                .getSingleResult();
+                .getResultList();
+        return list.size() > 0 ? list.get(0) : null;
     }
 
     @OneToMany(mappedBy = "user")

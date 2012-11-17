@@ -15,6 +15,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Entity(name = "userlogins")
+@Table(name = "userlogins")
 @SequenceGenerator(name = "userlogin_seq", sequenceName = "userlogin_seq")
 public class Login {
     @Id

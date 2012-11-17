@@ -5,12 +5,12 @@
 <tr>
     <td>@user.id</td>
     <td>@user.name</td>
-    <td>@user.email</td>
+    <td>@user.email @user.password </td>
 
 </tr>
 
 }
-@main("All users"){
+@main("All users",  navbar.render(routes.Application.users)){
 
         <div class="hero-unit">
     <h2>All current users</h2>

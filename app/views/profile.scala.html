@@ -1,6 +1,6 @@
 @(user: User)
 
-@main("Your profile") {
+@main("Your profile", navbar.render(routes.Application.userProfile)) {
 
 <div class="hero-unit">
     <h1>@user.name</h1>

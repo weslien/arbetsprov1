@@ -1,6 +1,6 @@
 @(loginState: Html)
 
-@main("Welcome to Play 2.0") {
+@main("Welcome to Play 2.0", navbar.render(routes.Application.index)) {
 
 <div class="hero-unit">
     <h1>@Messages("index.welcome")</h1>

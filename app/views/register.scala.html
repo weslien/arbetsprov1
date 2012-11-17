@@ -2,7 +2,7 @@
 @import helper._
 @implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) }
 
-@main("Sign up for super service"){
+@main("Sign up for super service",  navbar.render(routes.Application.registrationForm)){
 
 <div class="hero-unit">
     <h2>@Messages("register.welcome")</h2>

@@ -1,6 +1,6 @@
 @(errorMessage: String)
 
-@main(errorMessage) {
+@main(errorMessage,  navbar.render(routes.Application.index)) {
 
 <div class="hero-unit">
     <h2>@Messages("errorpage.heading")</h2>

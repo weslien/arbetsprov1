@@ -2,7 +2,7 @@
 @import helper._
 @implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) }
 
-@main("Login to super service"){
+@main("Login to super service", navbar.render(routes.Application.loginForm)){
 
 <div class="hero-unit">
     <h2>@Messages("login.welcome")</h2>
@@ -12,7 +12,7 @@
 @form(routes.Application.doLogin){
     <p>
     @inputText(loginForm("email"), '_label -> "Email")
-    @inputPassword(loginForm("password"), '_label -> "Password")
+    @inputPassword(loginForm("password"), '_label -> "Password", '_error -> "password")
 
 
     <div class="control-group">
