@@ -1,0 +1,14 @@
+index.welcome=The Super Login Service 1.0
+index.tagline=Boldly doing what everyone else has been doing, forever!
+index.button=I'm not sure I get it.
+
+login.welcome=Please enter your stuff
+login.tagline=If you forgot you can always register a new account.
+
+register.welcome=Welcome, sign up please!
+register.tagline=It's useful and fun!
+
+button.login=Log in
+button.loggedIn=Take me to my profile
+button.register=Sign me up!
+button.cancel=Take me away!

@@ -1,0 +1,33 @@
+@(registrationForm: Form[User])
+@import helper._
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) }
+
+@main("Sign up for super service"){
+
+<div class="hero-unit">
+    <h2>@Messages("register.welcome")</h2>
+
+    <p>@Messages("register.tagline")</p>
+
+@form(routes.Application.doRegistration){
+    <p>
+    @inputText(registrationForm("name"), '_label -> "Your name")
+    @inputText(registrationForm("email"), '_label -> "Email")
+    @inputPassword(registrationForm("password"), '_label -> "Password")
+
+
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn primary">Sign in</button>
+
+            <a class="btn btn-danger" href="/">
+                @Messages("button.cancel")
+            </a>
+        </div>
+    </div>
+    </p>
+
+}
+
+    </div>
+}

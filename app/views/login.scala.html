@@ -1,0 +1,32 @@
+@(loginForm: Form[User])
+@import helper._
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) }
+
+@main("Login to super service"){
+
+<div class="hero-unit">
+    <h2>@Messages("login.welcome")</h2>
+
+    <p>@Messages("login.tagline")</p>
+
+@form(routes.Application.doLogin){
+    <p>
+    @inputText(loginForm("email"), '_label -> "Email")
+    @inputPassword(loginForm("password"), '_label -> "Password")
+
+
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn primary">Sign in</button>
+
+            <a class="btn btn-primary" href="/register">
+                @Messages("button.register")
+            </a>
+        </div>
+    </div>
+    </p>
+
+}
+
+    </div>
+}
