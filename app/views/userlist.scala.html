@@ -5,7 +5,8 @@
 <tr>
     <td>@user.id</td>
     <td>@user.name</td>
-    <td>@user.email @user.password </td>
+    <td>@user.email</td>
+    <td>@user.password </td>
 
 </tr>
 
@@ -13,14 +14,15 @@
 @main("All users",  navbar.render(routes.Application.users)){
 
         <div class="hero-unit">
-    <h2>All current users</h2>
+    <h2>@Messages("userlist.title")</h2>
 
 <table class="table table-striped table-bordered">
     <thead>
     <tr>
         <th>#</th>
-        <th>Name</th>
-        <th>E-mail</th>
+        <th>@Messages("userlist.name")</th>
+        <th>@Messages("userlist.email")</th>
+        <th>@Messages("userlist.pasword")</th>
     </tr>
     </thead>
     @for(user <- users) {

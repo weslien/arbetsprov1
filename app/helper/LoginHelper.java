@@ -1,10 +1,12 @@
 package helper;
 
+import models.Login;
 import models.User;
 import play.mvc.Controller;
 import play.mvc.Http;
 
 import javax.persistence.NoResultException;
+import java.util.Date;
 
 
 /**
@@ -23,6 +25,15 @@ public class LoginHelper {
     public static void loginUser(Http.Session session,
                                  User user){
         session.put(LOGGED_IN, user.email);
+        createLogin(user);
+    }
+
+    private static void createLogin(User user) {
+        //TODO Trim the logins table to discard old data
+        Login login = new Login();
+        login.user = user;
+        login.loginDate = new Date();
+        login.save();
     }
 
     public static User getLoggedInUser(Http.Session session){
@@ -32,6 +43,10 @@ public class LoginHelper {
             clearLoggedInUser(session);
             return null;
         }
+    }
+
+    public static boolean isUserLoggedIn(){
+        return Controller.session().get(LOGGED_IN) != null;
     }
 
     public static void clearLoggedInUser(Http.Session session) {

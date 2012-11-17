@@ -34,7 +34,6 @@ public class User {
 
     public String password;
 
-
     public static User findById(Long id){
         return JPA.em().find(User.class, id);
     }
@@ -75,7 +74,9 @@ public class User {
 
     public Boolean attemptLogin() {
         try{
-         findByUsernamePassword(this.email, this.password);
+         User u = findByUsernamePassword(this.email, this.password);
+            this.id = u.id;
+            this.name = u.name;
             return true;
         }catch(NoResultException e){
             return false;
@@ -89,14 +90,6 @@ public class User {
         return list.size() > 0 ? list.get(0) : null;
     }
 
-    @OneToMany(mappedBy = "user")
-    private Collection<Login> logins;
 
-    public Collection<Login> getLogins() {
-        return logins;
-    }
 
-    public void setLogins(Collection<Login> logins) {
-        this.logins = logins;
-    }
 }

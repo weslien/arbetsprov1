@@ -36,4 +36,11 @@ public class Login {
         }
         JPA.em().persist(this);
     }
+
+    public static List<Login> findByUser(User user){
+        return JPA.em().createQuery("from userlogins where user_id=? order by logindate desc")
+                .setParameter(1, user.id)
+                .setMaxResults(5)
+                .getResultList();
+    }
 }

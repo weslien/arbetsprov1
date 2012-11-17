@@ -1,3 +1,11 @@
+brand.title=Home assignment GW
+
+nav.start=Home
+nav.account.register=Register account
+nav.logout=Log out
+nav.login=Log in
+nav.profile=Profile
+
 index.welcome=The Super Login Service 1.0
 index.tagline=Boldly doing what everyone else has been doing, forever!
 index.button=I'm not sure I get it.
@@ -5,16 +13,24 @@ index.button=I'm not sure I get it.
 login.welcome=Please enter your stuff
 login.tagline=If you forgot you can always register a new account.
 
-register.welcome=Welcome, sign up please!
-register.tagline=It's useful and fun!
+register.welcome=Welcome, sign up please
+register.tagline=It is useful and fun!
+register.email.unavailable=This email is already taken
+register.password.mismatch=Passwords have to be the same
 
 profile.invalidaccount=The account that was logged in has unrecoverable errors.
+profile.recentLogins=Recent logins
+
+thankyou.title=Thank you for registering!
+thankyou.body=You can now login using the credentials you chose.
 
 errorpage.heading=An error occurred
 error.generic = Something went wrong. Sorry!
+error.login.generic=Incorrect password or non-existing user.
 
 button.login=Log in
+button.signin=Sign in
 button.loggedIn=Take me to my profile
-button.register=Sign me up!
-button.cancel=Take me away!
+button.register=Register a new account
+button.cancel=No thanks
 button.home=Righty-o!

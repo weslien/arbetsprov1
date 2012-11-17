@@ -1,5 +1,6 @@
 @(currentRoute:Call)
-<div class="navbar navbar-inverse navbar-fixed-top">
+@import _root_.helper.LoginHelper
+<div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -7,18 +8,33 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="./index.html">Arbetsprov</a>
+            <a class="brand" href="/">@Messages("brand.title")</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li class="@if(currentRoute == routes.Application.index){active}">
-                        <a href="@routes.Application.index">Start</a>
+                        <a href="@routes.Application.index">@Messages("nav.start")</a>
                     </li>
+                    @if(!LoginHelper.isUserLoggedIn()){
                     <li class="@if(currentRoute == routes.Application.registrationForm){active}">
-                        <a href="@routes.Application.registrationForm">Registrera konto</a>
+                        <a href="@routes.Application.registrationForm">@Messages("nav.account.register")</a>
                     </li>
+                    }
+                    @if(LoginHelper.isUserLoggedIn()){
+                    <li class="@if(currentRoute == routes.Application.userProfile){active}">
+                        <a href="@routes.Application.userProfile">@Messages("nav.profile")</a>
+                    </li>
+                    }
+                    @if(LoginHelper.isUserLoggedIn()){
+                    <li class="@if(currentRoute == routes.Application.logout){active}">
+                        <a href="@routes.Application.logout">@Messages("nav.logout")</a>
+                    </li>
+                    }
+                    @if(!LoginHelper.isUserLoggedIn()){
                     <li class="@if(currentRoute == routes.Application.loginForm){active}">
-                        <a href="@routes.Application.loginForm">Logga in</a>
+                        <a href="@routes.Application.loginForm">@Messages("nav.login")</a>
                     </li>
+                    }
+
                 </ul>
             </div>
         </div>

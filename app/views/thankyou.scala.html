@@ -1,10 +1,15 @@
 @()
-
+@import helper._
 @main("Thank you",  navbar.render(routes.Application.registrationComplete)) {
 
 <div class="hero-unit">
-    <h1>Thank you for registering!</h1>
-    <p>You can now <a href="/login">login</a> using the credentials you chose.</p>
+    <h1>@Messages("thankyou.title")</h1>
+    <p>@Messages("thankyou.body")</p>
+    <p>
+        <a class="btn btn-primary btn-large" href="/login">
+            @Messages("button.login")
+        </a>
+    </p>
 
 
 </div>

@@ -12,7 +12,7 @@ create table users (
 
 create table userlogins (
   id                        bigint not null,
-  login_date                timestamp,
+  logindate                timestamp,
   user_id                bigint,
   constraint pk_userlogin primary key (id))
 ;

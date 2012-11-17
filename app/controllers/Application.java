@@ -39,7 +39,7 @@ public class Application extends Controller {
             return badRequest(login.render(loginForm));
         }
         if (!LoginHelper.attemptLogin(loginForm.get())) {
-            loginForm.reject("password", "Incorrect password or non-existing user.");
+            loginForm.reject("password", Messages.get("error.login.generic"));
 
             return badRequest(login.render(loginForm));
         }
@@ -63,21 +63,23 @@ public class Application extends Controller {
         // Check repeated password
         if (!registrationForm.field("password").valueOr("").isEmpty()) {
             if (!registrationForm.field("password").valueOr("").equals(registrationForm.field("repeatPassword").value())) {
-                registrationForm.reject("repeatPassword", "Password don't match");
+                registrationForm.reject("repeatPassword", Messages.get("register.password.mismatch"));
             }
         }
 
         // Check if the username is valid
         if (!registrationForm.hasErrors()) {
             if (User.findByEmail(registrationForm.get().email) != null) {
-                registrationForm.reject("email", "This username is already taken");
+                registrationForm.reject("email", Messages.get("register.email.unavailable"));
             }
         }
 
         if (registrationForm.hasErrors()) {
             return badRequest(register.render(registrationForm));
         }
-
+        //Clear the current user if any. State could get messy.
+        LoginHelper.clearLoggedInUser(session());
+        //TODO: Encrypt password. Hide registration behind a facade..
         registrationForm.get().save();
         return redirect(
                 routes.Application.registrationComplete()
@@ -112,6 +114,12 @@ public class Application extends Controller {
         return ok(
                 userlist.render(User.findAll())
         );
+    }
+
+    public static Result logout(){
+        LoginHelper.clearLoggedInUser(session());
+
+        return HOME;
     }
 
     public static Result error() {
