@@ -32,10 +32,16 @@ public class LoginHelper {
         //TODO Trim the logins table to discard old data
         Login login = new Login();
         login.user = user;
+        //TODO Don't use date, hard to mock
         login.loginDate = new Date();
         login.save();
     }
 
+    /**
+     * Get the currently logged in user. If no user is logged in, null is returned
+     * @param session
+     * @return
+     */
     public static User getLoggedInUser(Http.Session session){
         try{
             return User.findByEmail(session.get(LOGGED_IN));
@@ -45,14 +51,27 @@ public class LoginHelper {
         }
     }
 
+    /**
+     * Checks if any user is logged in
+     * @return
+     */
     public static boolean isUserLoggedIn(){
         return Controller.session().get(LOGGED_IN) != null;
     }
 
+    /**
+     * Clears the currently logged in uses. a.k.a. Log out
+     * @param session
+     */
     public static void clearLoggedInUser(Http.Session session) {
         session.remove(LOGGED_IN);
     }
 
+    /**
+     * Attempts to log in this user using the email/password in the instance
+     * @param user
+     * @return
+     */
     public static boolean attemptLogin(User user) {
         if (user.attemptLogin()) {
             loginUser(Controller.session(), user);
