@@ -8,7 +8,7 @@ import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.*;
-import views.html.fragments.stateNotLoggedIn;
+import views.html.fragments.stateLoggedIn;
 
 public class Application extends Controller {
 
@@ -20,7 +20,7 @@ public class Application extends Controller {
     public static Result index() {
 
         return ok(index.render(
-                stateNotLoggedIn.render()
+                stateLoggedIn.render()
         ));
     }
 
@@ -116,7 +116,7 @@ public class Application extends Controller {
         );
     }
 
-    public static Result logout(){
+    public static Result logout() {
         LoginHelper.clearLoggedInUser(session());
 
         return HOME;

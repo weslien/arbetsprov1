@@ -1,0 +1,18 @@
+@import _root_.helper.LoginHelper
+<p>
+    @if(!LoginHelper.isUserLoggedIn()){
+    <a class="btn btn-primary btn-large" href="/login">
+        @Messages("button.login")
+    </a>
+
+    <a class="btn btn-primary btn-large" href="/register">
+        @Messages("button.register")
+    </a>
+    }
+
+    @if(LoginHelper.isUserLoggedIn()){
+    <a class="btn btn-primary btn-large" href="@routes.Application.logout">
+        @Messages("button.logout")
+    </a>
+    }
+</p>

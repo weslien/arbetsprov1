@@ -11,8 +11,8 @@
 
 @form(routes.Application.doLogin){
     <p>
-    @inputText(loginForm("email"), '_label -> "Email")
-    @inputPassword(loginForm("password"), '_label -> "Password", '_error -> "password")
+    @inputText(loginForm("email"), '_label -> Messages("register.email"))
+    @inputPassword(loginForm("password"), '_label -> Messages("register.password"), '_error -> "password")
 
 
     <div class="control-group">

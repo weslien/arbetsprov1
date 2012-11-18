@@ -17,6 +17,10 @@ register.welcome=Welcome, sign up please
 register.tagline=It is useful and fun!
 register.email.unavailable=This email is already taken
 register.password.mismatch=Passwords have to be the same
+register.yourname=Your name
+register.email=E-mail
+register.password=Password
+register.repeatPassword=Repeat password
 
 profile.invalidaccount=The account that was logged in has unrecoverable errors.
 profile.recentLogins=Recent logins
@@ -29,8 +33,18 @@ error.generic = Something went wrong. Sorry!
 error.login.generic=Incorrect password or non-existing user.
 
 button.login=Log in
+button.logout=Log out
 button.signin=Sign in
 button.loggedIn=Take me to my profile
 button.register=Register a new account
 button.cancel=No thanks
 button.home=Righty-o!
+
+
+
+
+
+userlist.title=All users
+userlist.name=Name
+userlist.email=E-mail
+userlist.password=Password

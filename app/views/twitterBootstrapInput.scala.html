@@ -5,8 +5,8 @@
     <div class="controls">
         @elements.input
         <span class="help-inline">
-            @if(elements.hasErrors) {@elements.errors.mkString(", ")}
-            @if(!elements.hasErrors){@elements.infos.mkString(", ")}
+            <small>@if(elements.hasErrors) {@elements.errors.mkString(", ")}
+            @if(!elements.hasErrors){@elements.infos.mkString(", ")}</small>
         </span>
     </div>
 </div>

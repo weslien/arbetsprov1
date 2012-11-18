@@ -1,1 +1,47 @@
-index.welcome=Välkommen
+brand.title=Hemuppgift GW
+
+nav.start=Hem
+nav.account.register=Skapa konto
+nav.logout=Logga ut
+nav.login=Logga in
+nav.profile=Profil
+
+index.welcome=Super Login Servicen 1.0
+index.tagline=Inget nytt under solen här inte!
+index.button=Fattar nog ändå inte.
+
+login.welcome=Ange dina väsentligheter
+login.tagline=Om du har glömt dina uppgifter kan du alltid skapa ett nytt konto
+
+register.welcome=Välkommen, vänligen skriv in dig
+register.tagline=Användbart och kul är det!
+register.email.unavailable=e-postadress upptagen
+register.password.mismatch=Lösenorden ska nog ändå vara samma i båda rutorna....
+register.yourname=Ditt namn
+register.email=E-post
+register.password=Lösenord
+register.repeatPassword=Lösenord igen
+
+profile.invalidaccount=Det inloggade kontot har konstiga fel. Skapa ett nytt vettja!
+profile.recentLogins=Recent logins
+
+thankyou.title=Tackar för registreringen
+thankyou.body=Nu kan du logga in med det du nyss angav
+
+errorpage.heading=Fel? Japp!
+error.generic = NU gick nåt på sniskan. Ledsen. Verkligen.
+error.login.generic=Fel användarnamn eller lösenord.
+
+button.login=Logga in
+button.logout=Logga out
+button.signin=Logga in
+button.loggedIn=Till min profil
+button.register=Skapa ett nytt konto
+button.cancel=Nä tack
+button.home=Vesst!
+
+
+userlist.title=Alla användare
+userlist.name=Namn
+userlist.email=E-post
+userlist.password=Lösenord
