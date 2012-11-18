@@ -24,6 +24,7 @@ register.repeatPassword=Repeat password
 
 profile.invalidaccount=The account that was logged in has unrecoverable errors.
 profile.recentLogins=Recent logins
+profile.title=My profile
 
 thankyou.title=Thank you for registering!
 thankyou.body=You can now login using the credentials you chose.
